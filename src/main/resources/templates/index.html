@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container"><br>
+		<a th:href="@{/form}">Crear Contacto</a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Username</th>
+					<th scope="col">Last name</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user: ${users}">
+					<th scope="row" th:text="${user.id}">1</th>
+					<td th:text="${user.username}">Mark</td>
+					<td th:text="${user.lastName}">Otto</td>
+					<td th:if="${username != user.username}"><a th:href="@{/edit/} + ${user.id}">Editar</a>&nbsp&nbsp<a th:href="@{'/delete/' + ${user.id}}" onclick="return confirm('Estas seguro de eliminar')">Eliminar</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

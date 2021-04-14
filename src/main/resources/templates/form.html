@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container"><br>
+		<h5 th:text="${titulo}"></h5><br>
+		<form th:if="${!edit}" th:action="@{/form}" th:object="${user}" method="post">
+			<div class="mb-3">
+				<label for="username" class="form-label">Username</label> <input
+					type="text" class="form-control" th:field="*{username}"
+					placeholder="Username" autofocus required>
+			</div>
+
+			<div class="mb-3">
+				<label for="lastName" class="form-label">LastName</label> <input
+					type="text" class="form-control" th:field = "*{lastName}"
+					placeholder="Last Name" required>
+			</div>
+			
+			<div class="mb-3">
+				<label for="password" class="form-label">Password</label> <input
+					type="password" class="form-control" th:field = "*{password}"
+					placeholder="Password" required>
+			</div>
+
+			<input type="submit" class="btn btn-primary" value="Agregar contacto" >
+		</form>
+		
+		<form th:if="${edit}" th:action="@{/edit}" th:object="${user}" method="post">
+			<input type="hidden" th:field="*{id}">
+			<div class="mb-3">
+				<label for="username" class="form-label">Username</label> <input
+					type="text" class="form-control" th:field="*{username}"
+					placeholder="Username" autofocus required>
+			</div>
+
+			<div class="mb-3">
+				<label for="lastName" class="form-label">LastName</label> <input
+					type="text" class="form-control" th:field = "*{lastName}"
+					placeholder="Last Name" required>
+			</div>
+
+			<input type="submit" class="btn btn-primary" value="Actualizar contacto" >
+		</form>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
